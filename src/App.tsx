@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { motion } from 'motion/react';
-import profilePic from './assets/profile.jpg';
+import { profileBase64 } from './assets/profileBase64';
 import {
   User, Calendar, Mail, BookOpen, FileText, Presentation, Box,
   Briefcase, GraduationCap, Award, Type, Monitor,
@@ -121,7 +121,7 @@ export default function App() {
                 <div className="w-24 h-24 md:w-28 md:h-28 rounded-full p-[2px] bg-zinc-900 border border-white/10 relative z-10">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black">
                     <img 
-                      src={profilePic}
+                      src={profileBase64}
                       alt="陳宣諭 Hsuan Yu Chen" 
                       className="w-full h-full object-cover grayscale-[40%] hover:grayscale-0 transition-all duration-700 contrast-125"
                     />

@@ -239,6 +239,81 @@ export default function App() {
                   <div className="group pl-8 relative">
                     <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_10px_#00f0ff]" />
                     <div className="flex items-center gap-3 text-[11px] font-mono font-bold text-[#00f0ff] mb-4 tracking-[0.2em] uppercase">
+                      <span>2023.09 — Present</span>
+                    </div>
+                    <h3 className="text-2xl font-display font-medium text-white mb-2 tracking-wide group-hover:text-[#00f0ff] transition-colors">皮克敏專業玩家</h3>
+                    <p className="text-[10px] font-mono text-zinc-500 mb-6 tracking-[0.2em] border-white/10 pb-4">Strategy & Resource Management</p>
+                    <ul className="space-y-4 text-zinc-400 font-light leading-relaxed bg-[#0a0a0a]/50 p-6 rounded-2xl border border-white/5 backdrop-blur-sm">
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>帶領百隻以上的皮克敏團隊，進行高難度地形探索與資源回收任務</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>精準分析地圖數據，制定最佳散步路線以最大化花瓣種植與精華收集效益</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>具備卓越危機處理能力，有效調度各色皮克敏以最小戰損擊敗大型原生生物</span>
+                      </li>
+                    </ul>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.3}>
+                  <div className="group pl-8 relative">
+                    <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_10px_#00f0ff]" />
+                    <div className="flex items-center gap-3 text-[11px] font-mono font-bold text-[#00f0ff] mb-4 tracking-[0.2em] uppercase">
+                      <span>專科四年全天候</span>
+                    </div>
+                    <h3 className="text-2xl font-display font-medium text-white mb-2 tracking-wide group-hover:text-[#00f0ff] transition-colors">點名觀測員</h3>
+                    <p className="text-[10px] font-mono text-zinc-500 mb-6 tracking-[0.2em] border-white/10 pb-4">Roll Call Observer</p>
+                    <ul className="space-y-4 text-zinc-400 font-light leading-relaxed bg-[#0a0a0a]/50 p-6 rounded-2xl border border-white/5 backdrop-blur-sm">
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>完美觸發莫非定律：只要我努力早起並乖乖坐在教室第一排，教授當天絕對會忘記點名或大發慈悲不點名。</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>精準的「反向」預知能力：一旦決定翹課在宿舍補眠，當天必定是全班大點名、突擊小考或是計算平時成績的關鍵時刻。</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>擔任全班的點名風向標：同學只要看我今天有沒有出現在教室，就能準確預測今天教授點名的機率（準確率高達 99.9%）。</span>
+                      </li>
+                    </ul>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.4}>
+                  <div className="group pl-8 relative">
+                    <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_10px_#00f0ff]" />
+                    <div className="flex items-center gap-3 text-[11px] font-mono font-bold text-[#00f0ff] mb-4 tracking-[0.2em] uppercase">
+                      <span>不定期副本任務 (共兩次)</span>
+                    </div>
+                    <h3 className="text-2xl font-display font-medium text-white mb-2 tracking-wide group-hover:text-[#00f0ff] transition-colors">兩次工作人員</h3>
+                    <p className="text-[10px] font-mono text-zinc-500 mb-6 tracking-[0.2em] border-white/10 pb-4">Concert Body Check & Security Specialist</p>
+                    <ul className="space-y-4 text-zinc-400 font-light leading-relaxed bg-[#0a0a0a]/50 p-6 rounded-2xl border border-white/5 backdrop-blur-sm">
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>奉旨於兩場大型演唱會中擔任近距離接觸第一線，合法且專業地對數千名粉絲進行「深層物理拍搜」，一晚摸過的人比過去幾十年加起來還多。</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>練就了傳說中的「神之手」，隔著衣服輕拍一秒就能精準分辨出裡面藏的是違規相機、偷帶的飲料罐，還是純粹的體脂肪。</span>
+                      </li>
+                      <li className="flex items-start gap-4">
+                        <div className="mt-2 text-[#00f0ff] opacity-60">▹</div>
+                        <span>面對狂熱粉絲各種刷新三觀的「人體藏物奇招」，始終保持出家僧人般的冷酷無情，堅決沒收違禁品以守護演唱會的和平與愛。</span>
+                      </li>
+                    </ul>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.5}>
+                  <div className="group pl-8 relative">
+                    <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_10px_#00f0ff]" />
+                    <div className="flex items-center gap-3 text-[11px] font-mono font-bold text-[#00f0ff] mb-4 tracking-[0.2em] uppercase">
                       <span>2024.07 — Present</span>
                     </div>
                     <h3 className="text-2xl font-display font-medium text-white mb-2 tracking-wide group-hover:text-[#00f0ff] transition-colors">六合小玲</h3>

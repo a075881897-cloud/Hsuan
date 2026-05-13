@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
-import { motion } from 'motion/react';
+import React, { ReactNode, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { profileBase64 } from './assets/profileBase64';
 import {
   User, Calendar, Mail, BookOpen, FileText, Presentation, Box,
   Briefcase, GraduationCap, Award, Type, Monitor,
-  Quote, ChevronRight, Sparkles, MapPin, ExternalLink
+  Quote, ChevronRight, Sparkles, MapPin, ExternalLink, Play, X
 } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: ReactNode, delay?: number, className?: string }) => (
@@ -31,48 +31,63 @@ const SectionTitle = ({ title, subtitle, number }: { title: string, subtitle?: s
   </div>
 );
 
-const AssignmentCard = ({ icon: Icon, date, type, title, link, index }: any) => (
-  <motion.a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
-    className="group block p-8 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 hover:border-[#00f0ff]/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(0,240,255,0.2)] flex flex-col h-full relative overflow-hidden rounded-[2rem]"
-  >
-    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#00f0ff]/10 to-transparent rounded-bl-full pointer-events-none group-hover:from-[#00f0ff]/20 transition-colors duration-500" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(112,0,255,0.05)_0%,transparent_50%)] pointer-events-none" />
-    
-    <div className="flex justify-between items-start mb-auto pb-12 relative z-10">
-      <div className="p-3.5 bg-white/5 border border-white/10 rounded-2xl group-hover:bg-[#00f0ff]/10 text-zinc-400 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
-        <Icon className="w-6 h-6" />
+const AssignmentCard = ({ icon: Icon, date, type, title, link, index, video, onClick }: any) => {
+  const isVideo = !!video;
+  return (
+    <motion.div
+      onClick={isVideo ? () => onClick(video) : undefined}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+      className={`group block p-8 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 hover:border-[#00f0ff]/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(0,240,255,0.2)] flex flex-col h-full relative overflow-hidden rounded-[2rem] ${isVideo ? 'cursor-pointer' : ''}`}
+    >
+      {isVideo ? null : (
+        <a href={link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20" aria-label={`Open ${title}`} />
+      )}
+      
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#00f0ff]/10 to-transparent rounded-bl-full pointer-events-none group-hover:from-[#00f0ff]/20 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(112,0,255,0.05)_0%,transparent_50%)] pointer-events-none" />
+      
+      <div className="flex justify-between items-start mb-auto pb-12 relative z-10">
+        <div className="p-3.5 bg-white/5 border border-white/10 rounded-2xl group-hover:bg-[#00f0ff]/10 text-zinc-400 group-hover:text-[#00f0ff] group-hover:border-[#00f0ff]/30 transition-all duration-500">
+          <Icon className="w-6 h-6" />
+        </div>
+        <span className="text-[10px] tracking-widest bg-white/5 border border-white/10 text-zinc-400 px-4 py-1.5 rounded-full font-mono group-hover:border-[#00f0ff]/50 group-hover:text-[#00f0ff] transition-colors font-medium">
+          {type}
+        </span>
       </div>
-      <span className="text-[10px] tracking-widest bg-white/5 border border-white/10 text-zinc-400 px-4 py-1.5 rounded-full font-mono group-hover:border-[#00f0ff]/50 group-hover:text-[#00f0ff] transition-colors font-medium">
-        {type}
-      </span>
-    </div>
-    
-    <div className="relative z-10">
-      <div className="flex items-center gap-2 text-[11px] font-mono font-medium text-zinc-500 mb-3 group-hover:text-[#00f0ff]/70 transition-colors uppercase">
-        <span>{date}</span>
+      
+      <div className="relative z-10">
+        <div className="flex items-center gap-2 text-[11px] font-mono font-medium text-zinc-500 mb-3 group-hover:text-[#00f0ff]/70 transition-colors uppercase">
+          <span>{date}</span>
+        </div>
+        <h3 className="text-xl font-bold text-zinc-100 mb-8 group-hover:text-white transition-colors leading-relaxed font-sans">
+          {title}
+        </h3>
       </div>
-      <h3 className="text-xl font-bold text-zinc-100 mb-8 group-hover:text-white transition-colors leading-relaxed font-sans">
-        {title}
-      </h3>
-    </div>
-    
-    <div className="flex justify-between items-center text-[10px] font-bold tracking-[0.2em] text-zinc-500 group-hover:text-[#00f0ff] transition-colors pt-6 border-t border-white/10 mt-auto uppercase z-10">
-      <span>Access Project</span>
-      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#00f0ff]/20 transition-colors">
-        <ExternalLink className="w-4 h-4" />
+      
+      <div className="flex justify-between items-center text-[10px] font-bold tracking-[0.2em] text-zinc-500 group-hover:text-[#00f0ff] transition-colors pt-6 border-t border-white/10 mt-auto uppercase z-10">
+        <span>{isVideo ? 'Play Video' : 'Access Project'}</span>
+        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#00f0ff]/20 transition-colors">
+          {isVideo ? <Play className="w-4 h-4 ml-0.5" /> : <ExternalLink className="w-4 h-4" />}
+        </div>
       </div>
-    </div>
-  </motion.a>
-);
+    </motion.div>
+  );
+};
 
 export default function App() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveVideo(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const assignments = [
     { icon: FileText, date: '2026.03.09', type: 'WORD', title: '清明連假旅行規劃', link: 'https://drive.google.com/file/d/1fw7qdT-_L0XICJ4XfZJIBkCbmwjwD1-i/view' },
     { icon: Presentation, date: '2026.03.17', type: 'SLIDE', title: '清明連假旅行規劃', link: 'https://docs.google.com/presentation/d/1ah96SQlHrZtaTVJFVWZmFPAnCZRpnAQKpivA01la6NI/present?slide=id.p1' },
@@ -81,6 +96,10 @@ export default function App() {
     { icon: FileText, date: '2026.03.23', type: 'AI PDF', title: 'Notebook LM 清明連假', link: 'https://drive.google.com/file/d/1fr0knU9DIZxv2RhPy2MhnBkXp4e9HOhy/view' },
     { icon: Presentation, date: '2026.04.05', type: 'SLIDE', title: '清明連假 PPT', link: 'https://drive.google.com/file/d/1iWbri1niIekE2YaWTMw3Mcjfak9uSmPO/view' },
     { icon: Box, date: '2026.04.13', type: '3D ASSET', title: '3D公仔模型', link: 'https://studio.tripo3d.ai/3d-model/12705dfd-ecfa-4486-a8fe-9091f9c2e1dd?invite_code=5OKBBA' },
+    { icon: Play, date: '2026.05.13', type: 'VIDEO', title: '南投之旅(吉普車)', video: 'https://cdn.hailuoai.video/moss/prod/2026-05-13-11/user/multi_chat_file/1778642303122409652-0_1778642303.mp4' },
+    { icon: Play, date: '2026.05.13', type: 'VIDEO', title: '南投之旅(獨木舟)', video: 'https://cdn.hailuoai.video/moss/prod/2026-05-13-11/user/multi_chat_file/1778642120157061688-0_1778642120.mp4' },
+    { icon: Play, date: '2026.05.13', type: 'VIDEO', title: '南投之旅(卡丁車)', video: 'https://cdn.hailuoai.video/moss/prod/2026-05-13-11/user/multi_chat_file/1778641737784359356-0_1778641737.mp4' },
+    { icon: Play, date: '2026.05.13', type: 'VIDEO', title: '南投之旅(結束)', video: 'https://s3.hicloud.net.tw/zuvio.public/public/files/question/irs_177493899513768eccee0c1bf8e04a8bc9658bc10d14d44cff.mp4' },
   ];
 
   return (
@@ -167,10 +186,44 @@ export default function App() {
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {assignments.map((assignment, index) => (
-                <AssignmentCard key={index} {...assignment} index={index} />
+                <AssignmentCard key={index} {...assignment} index={index} onClick={setActiveVideo} />
               ))}
             </div>
           </section>
+
+          <AnimatePresence>
+            {activeVideo && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
+                onClick={() => setActiveVideo(null)}
+              >
+                <div 
+                  className="relative w-full max-w-5xl aspect-video bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,240,255,0.2)] shrink-0"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <video 
+                    src={activeVideo} 
+                    autoPlay 
+                    controls 
+                    className="w-full h-full object-cover"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                
+                <button 
+                  onClick={() => setActiveVideo(null)}
+                  className="mt-8 sm:mt-10 z-[60] px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all cursor-pointer shadow-xl hover:scale-105 gap-2 font-mono text-sm tracking-widest shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                  <span>關閉影片 CLOSE</span>
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 lg:gap-24 relative">
             <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2" />
